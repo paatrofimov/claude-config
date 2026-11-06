@@ -32,7 +32,9 @@ argument-hint: "[тикет | ветка]"
 ## 3. Описание MR
 
 Создать MR предложить сразу после первого коммита (`glab mr create` или `gh pr create`, по remote), не дожидаясь
-конца работы. Каждая итерация обновляет описание.
+конца работы. Каждая итерация обновляет описание. Если у `glab` нет прав (403 `insufficient_granular_scope`),
+MR на GitLab создается пушем: `git push -o merge_request.create -o merge_request.target=<base>
+-o merge_request.title="<заголовок>" origin <branch>`, описание потом вставить в веб-интерфейсе.
 
 Структура:
 
