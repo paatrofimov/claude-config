@@ -17,17 +17,17 @@
   - взять тикет – `Status: claimed` до начала работы; закрыть – раздел `## Answer` и `Status: resolved`.
 - Меток триажа нет: `/triage` и метку `ready-for-agent` не применять.
 
-## Что в скиллах не применять
+## Куда скиллы пишут результат
 
-- `pr`, `triage`, `setup-matt-pocock-skills` выключены в `~/.claude/settings.json` (`skillOverrides`): описание MR
-  пишется по `mr-self-review`, триажа нет, настройка – этот файл.
-- Ревью диффа – `mattpocock-skills:code-review` (встроенный `/code-review` – только по прямому вызову пользователя),
-  security-ревью – только `fast-security-review`.
-- `research` – выводы писать не в репозиторий, а в `<WORK>/<имя-папки-репо>/<slug>/research.md` и назвать путь.
-- `prototype` – прототип не коммитить и ветку под него не создавать; держать вне репозитория рядом с research,
-  в репозиторий переносить только принятое решение.
-- `implement`, `implement-spec` – не коммитить, не пушить, не создавать ветки, MR и worktree сверх правил
-  `mr-self-review`; тикеты закрывать только в файлах `<WORK>`. Коммит – только по просьбе пользователя.
+- Описание MR – по `mr-self-review`; настройка скиллов – этот файл (`pr`, `triage`, `setup-matt-pocock-skills`
+  выключены в `~/.claude/settings.json`, `skillOverrides`).
+- Ревью диффа – `mattpocock-skills:code-review` (встроенный `/code-review` – по прямому вызову пользователя),
+  security-ревью – `fast-security-review`.
+- `research` – выводы в `<WORK>/<имя-папки-репо>/<slug>/research.md`, путь назвать пользователю.
+- `prototype` – прототип в `<WORK>/<имя-папки-репо>/<slug>/prototype/`, в рабочем дереве; в репозиторий переносится
+  только принятое решение.
+- `implement`, `implement-spec` – результат остается незакоммиченным в текущем worktree по правилам `mr-self-review`;
+  тикеты закрываются в файлах `<WORK>`. Коммит и пуш – по просьбе пользователя.
 
 ## Доменные доки
 
