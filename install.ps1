@@ -1,7 +1,8 @@
 ﻿# Подключает скиллы и правила из этого репо в ~/.claude через junction:
 # правки в репо сразу видны Claude Code, копировать ничего не нужно.
 param(
-    # Рабочая папка для очередей /conveyor; по умолчанию – рядом с репо.
+    # Рабочая папка для файлов скиллов вне репозиториев (спеки и тикеты mattpocock-skills, см. rules/agent-skills.md);
+    # по умолчанию – рядом с репо.
     [string]$WorkDir = (Join-Path (Split-Path $PSScriptRoot -Parent) "claude-config-work")
 )
 

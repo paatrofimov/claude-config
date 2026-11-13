@@ -19,7 +19,10 @@
 
 ## Что в скиллах не применять
 
-- `pr` – не применять: описание MR пишется по `mr-self-review`, шаблон Summary / Evidence / Merge Danger не нужен.
+- `pr`, `triage`, `setup-matt-pocock-skills` выключены в `~/.claude/settings.json` (`skillOverrides`): описание MR
+  пишется по `mr-self-review`, триажа нет, настройка – этот файл.
+- Ревью диффа – `mattpocock-skills:code-review` (встроенный `/code-review` – только по прямому вызову пользователя),
+  security-ревью – только `fast-security-review`.
 - `research` – выводы писать не в репозиторий, а в `<WORK>/<имя-папки-репо>/<slug>/research.md` и назвать путь.
 - `prototype` – прототип не коммитить и ветку под него не создавать; держать вне репозитория рядом с research,
   в репозиторий переносить только принятое решение.
