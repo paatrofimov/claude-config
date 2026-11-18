@@ -1,6 +1,8 @@
 ﻿# Форматирует CSharpier только строки, измененные относительно -Base. Новые файлы форматируются целиком.
 # CSharpier переписывает файл целиком, а в неотформатированном репо это дает в диффе чужие строки:
 # скрипт оставляет только те правки CSharpier, что задевают измененные строки, остальные откатывает.
+# Правка CSharpier вплотную к измененной строке сливается с ней в один хунк и применяется целиком.
+# Проверка: Format-ChangedCSharp.Tests.ps1.
 param(
     # Файлы .cs; по умолчанию – все измененные и новые .cs в рабочей копии.
     [string[]]$Files,
@@ -59,8 +61,9 @@ foreach ($file in $Files) {
     }
 
     # Строки рабочей копии, измененные относительно -Base; у удаления – соседние строки.
+    # Без --ignore-cr-at-eol CRLF-файл рабочей копии против LF в git (autocrlf) выглядел бы измененным целиком.
     $touched = [Collections.Generic.HashSet[int]]::new()
-    foreach ($h in Get-Hunks (git -C $Repo -c core.autocrlf=false diff --no-color -U0 $Base -- $file)) {
+    foreach ($h in Get-Hunks (git -C $Repo diff --no-color --ignore-cr-at-eol -U0 $Base -- $file)) {
         if ($h.NewCount -gt 0) { $h.NewStart..($h.NewStart + $h.NewCount - 1) | ForEach-Object { [void]$touched.Add($_) } }
         else { [void]$touched.Add($h.NewStart); [void]$touched.Add($h.NewStart + 1) }
     }
