@@ -69,6 +69,10 @@ argument-hint: "[тикет | ветка]"
 Создать MR предложить сразу после первого коммита (`glab mr create` или `gh pr create`, по remote), не дожидаясь
 конца работы. Перед созданием проверить, нет ли уже MR на эту ветку. Каждая итерация обновляет описание (`glab mr update <iid> --description`).
 
+Каждому MR, который создаешь или пересоздаешь, ставить метку `ai_generated`: при создании пушем –
+`-o merge_request.label=ai_generated`, через `glab mr create` – `--label ai_generated`, у существующего –
+`glab mr update <iid> --label ai_generated`.
+
 Описание короткое – два абзаца, без заголовков, около 400 символов своего текста:
 
 ```markdown
